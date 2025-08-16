@@ -1,0 +1,441 @@
+body, html {
+  font-family: 'EXO', sans-serif;
+  margin: 0;
+  padding: 0;
+    overflow-x: hidden; /* chỉ ẩn cuộn ngang */
+  overflow-y: auto;   /* cho phép cuộn dọc */
+  height: 100%;
+}
+
+.background {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(to bottom right, #00b4d8, #0077b6);
+    overflow-x: hidden; /* chỉ ẩn cuộn ngang */
+  overflow-y: auto;   /* cho phép cuộn dọc */
+}
+
+.bubble {
+  position: absolute;
+  bottom: -50px;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  animation: rise 10s linear infinite;
+}
+
+@keyframes rise {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-1000px) scale(1.5);
+    opacity: 0;
+  }
+}
+
+.header-section {
+  background: linear-gradient(90deg, #a7f8ff, #a7f8ff);
+  padding: 20px 10px;
+  text-align: center;
+  color: rgb(7, 68, 180);
+  border-bottom: 4px solid #00bcd4;
+}
+
+.logo-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.logo {
+  width: 90px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.company-name {
+  font-size: 1.6rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0;
+}
+
+@media (max-width: 600px) {
+  .company-name {
+    font-size: 1.2rem;
+  }
+
+  .logo {
+    width: 48px;
+    max-width: 20vw;
+  }
+
+  .search-bar input {
+    font-size: 0.9rem;
+  }
+}
+
+.search-container {
+  width: 100%;
+  text-align: center;
+  margin: 30px 0;
+}
+
+#search-box {
+  width: 50%;
+  max-width: 200px;
+  padding: 12px 18px;
+  font-size: 1rem;
+  border: 2px solid #00bcd4;
+  border-radius: 30px;
+  outline: none;
+  transition: 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 188, 212, 0.2);
+}
+
+#search-box:focus {
+  border-color: #008ba3;
+  box-shadow: 0 4px 20px rgba(0, 188, 212, 0.4);
+}
+
+
+main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 2rem;
+  gap: 20px;
+}
+
+.product-image {
+  background: #fff;
+  color: #024e58;
+  border-radius: 8px;
+  padding: 1rem;
+  width: 250px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.product-image {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.product-image img {
+  width: 90%;
+  height: auto;
+  object-fit: contain;
+  background-color: #f9f9f9;
+  border-radius: 12px; /* 👈 Bo góc mềm mại */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+/* Zoom và đổ bóng khi hover */
+.product-image:hover {
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+}
+
+.product-image:hover img {
+  transform: scale(1.12);
+}
+
+/* ===== Viền mờ khi hover ===== */
+.product-image::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.product-image:hover::before {
+  opacity: 1;
+}
+
+/* Chỉ hiệu ứng hover trên máy tính */
+@media (hover: hover) {
+  .product-image:hover {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+  }
+
+  .product-image:hover img {
+    transform: scale(1.12);
+    border-radius: 12px; /* 👈 Giữ bo góc khi zoom */
+  }
+
+  .product-image:hover::before {
+    opacity: 1;
+  }
+
+}
+
+/* Hiệu ứng ánh sáng lướt */
+.product-image::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-20deg);
+  animation: light-sweep 2s infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Viền sáng */
+.product-image::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes light-sweep {
+  0% {
+    left: -75%;
+  }
+  100% {
+    left: 125%;
+  }
+}
+
+
+.detail-btn {
+  background: #0097a7;
+  color: #fff;
+  border: none;
+  border-radius: 24px;
+  padding: 8px 24px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.popup {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.3);
+  z-index: 10000;
+  align-items: center;
+  justify-content: center;
+}
+
+.popup-content {
+  background: #fff;
+  border-radius: 16px;
+  padding: 32px 24px;
+  width: 400px;
+  height: 420px;
+  max-width: 90vw;
+  max-height: 90vh;
+  margin: auto;
+  position: relative;
+  box-shadow: 0 4px 32px rgba(0,150,136,0.18);
+  animation: popupShow 0.3s;
+  overflow-y: auto; /* Enable vertical scroll if content is too long */
+}
+
+@keyframes popupShow {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.close-btn {
+  position: absolute;
+  top: 12px;
+  right: 18px;
+  font-size: 2rem;
+  color: #0097a7;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+footer {
+  background: #002c4d;
+  color: #fff;
+  padding: 2rem 1rem 1rem;
+  font-size: 0.95rem;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.footer-left, .footer-center, .footer-right {
+  flex: 1 1 250px;
+}
+
+.footer-left h3 {
+  margin-bottom: 10px;
+}
+
+.footer-right .social-icons img {
+  width: 24px;
+  margin-right: 10px;
+  transition: transform 0.3s;
+}
+
+.footer-right .social-icons img:hover {
+  transform: scale(1.1);
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.85rem;
+  border-top: 1px solid #ffffff30;
+  padding-top: 1rem;
+  color: #cccccc;
+}
+
+footer a {
+  color: #7fd7ff;
+  text-decoration: none;
+}
+footer a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .footer-container {
+    flex-direction: column;
+    gap: 16px;
+    padding: 0 3vw;
+  }
+  #product-list {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    padding: 24px 3vw;
+  }
+  .popup-content {
+    max-width: 90vw;
+  }
+}
+
+@media (max-width: 600px) {
+  .company-name {
+    font-size: 1.1rem;
+  }
+  .logo {
+    height: 40px;
+  }
+  #search-box {
+    width: 90vw;
+    font-size: 0.95rem;
+  }
+  .product-image {
+    padding: 16px 8px;
+  }
+}
+
+.loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  transition: opacity 0.4s ease-out;
+}
+
+.loader img {
+  width: 120px;
+  animation: pulseLogo 2s infinite ease-in-out;
+}
+
+@keyframes pulseLogo {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 0.7;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+    body {
+        font-size: 14px; /* chữ nhỏ hơn để vừa màn hình */
+    }
+
+    .container {
+        width: 95%;
+        padding: 0 10px;
+    }
+
+    /* Chuyển layout sang dạng cột */
+    .product-list {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .product-item {
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Nút bấm to hơn cho dễ click */
+    button {
+        padding: 12px 18px;
+        font-size: 16px;
+    }
+}
+
+/* Responsive cho màn hình cực nhỏ (dưới 480px) */
+@media only screen and (max-width: 480px) {
+    body {
+        font-size: 13px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    .product-item img {
+        border-radius: 10px;
+    }
+}
