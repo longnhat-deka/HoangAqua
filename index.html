@@ -27,6 +27,15 @@
         placeholder="🔍 Tìm sản phẩm"/>
     </div>
   </header>
+  
+  <div class="filter-buttons">
+    <button onclick="renderProducts('all')">Tất cả</button>
+    <button onclick="renderProducts('ruot')">Nhóm Ruột</button>
+    <button onclick="renderProducts('gan')">Nhóm Gan</button>
+    <button onclick="renderProducts('dietkhuan')"> Nhóm Diệt khuẩn</button>
+    <button onclick="renderProducts('khoang')">Nhóm Khoáng</button>
+    <button onclick="renderProducts('xuly')">Nhóm xử lý môi trường</button>
+  </div>
 
   <main id="product-list">
     <!-- Sản phẩm sẽ được render bằng JavaScript -->
@@ -40,18 +49,21 @@
       <p id="popup-text"></p>
     </div>
   </div>
+</body>
 
-  <footer>
+<footer>
   <div class="footer-container">
     <div class="footer-left">
       <h3>CTY TNHH THỦY SẢN HOÀNG AQUA</h3>
       <p>Chuyên cung cấp sản phẩm vi sinh, thuốc thủy sản chất lượng cao phục vụ ngành nuôi tôm</p>
     </div>
+
     <div class="footer-center">
       <p>📍  Địa chỉ: Đ.An Dương Vương, Tổ 8, KP 3, Xã Trảng Bom, T.Đồng Nai</p>
       <p>📞 Hotline: 0866.190.886</p>
       <p>📧 Email: thuysanhoangaqua@gmail.com</p>
     </div>
+
     <div class="footer-right">
       <p>Theo dõi chúng tôi:</p>
       <div class="social-icons">
@@ -61,12 +73,12 @@
       </div>
     </div>
   </div>
+
   <div class="footer-bottom">
     &copy; 2025 HOÀNG AQUA. All rights reserved. Design by <a href="https://www.facebook.com/le.phung.long.nhat">Godon</a>
   </div>
-</footer>
-    
 
-  <script src="script.js"></script>
-</body>
+</footer>
+
+<script src="script.js"></script>
 </html>
